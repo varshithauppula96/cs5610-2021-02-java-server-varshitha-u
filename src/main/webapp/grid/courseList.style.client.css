@@ -1,0 +1,53 @@
+
+.wbdv-sticky-top {
+    position: fixed;
+    width: 100%;
+    background-color: #428EF5 ;
+    color:white;
+    z-index: 1;
+}
+.wbdv-padding-5px {
+    padding: 5px;
+
+}
+.containertitle{
+
+    width: 100%;
+    background-color: #f0f0f0;
+    padding-right: 10%;
+    padding-left: 10%;
+padding-bottom:30px;
+}
+
+.detailsgrid{
+
+padding:5px;
+
+}
+
+.bordergrid{
+border-bottom:2px solid #c4c4c4;
+border-left:2px solid #c4c4c4;
+border-right:2px solid #c4c4c4;
+background-color:white;
+padding-top:8px;
+padding-bottom:10px;
+}
+
+
+
+
+
+
+.bglight-blue{
+  background-color: #66A8FF;
+color:white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+.form-control:-moz-placeholder {
+  color: white;
+}
