@@ -1,23 +1,34 @@
 var tablebody = jQuery("tbody")
 var usersArr = [
-    {username: 'varffi', password: 'avj', firstname: 'varshitha', lastname:'uppula', role:'student'},
-    {username: 'laoeb', password: 'avj', firstname: 'amit', lastname:'uppula', role:'faculty'},
-    {username: 'iajdpw', password: 'avj', firstname: 'varshitha', lastname:'vignesh', role:'student'},
-    {username: 'aowjow', password: 'avj', firstname: 'vjayesh', lastname:'uppula', role:'student'},
-    {username: 'qiod', password: 'avj', firstname: 'varshitha', lastname:'uppula', role:'faculty'},
-    {username: 'amdow', password: 'avj', firstname: 'peiya', lastname:'spmya', role:'student'},
-];
-var addUserBtn = jQuery(".wbdv-create")
-console.log(addUserBtn)
-addUserBtn.click(function(){
-    var usersArr1 = [
-        {username: 'varffi', password: 'avj', firstname: 'varshitha', lastname:'uppula', role:'student'},
-        {username: 'laoeb', password: 'avj', firstname: 'amit', lastname:'uppula', role:'faculty'},
 
-    ];
+];
+var $userNameFld = $("#usernameFld")
+var $passwordFld = $("#passwordFld")
+var $firstNameFld = $("#firstNameFld")
+var $lastNameFld = $("#lastNameFld")
+var $roleFld = $("#roleFld")
+var $addUserBtn = jQuery(".wbdv-create")
+console.log($addUserBtn)
+
+$addUserBtn.click(function () {
+    var usersArr1 =
+        {
+            username: $userNameFld.val(),
+            password: $passwordFld.val(),
+            firstname: $firstNameFld.val(),
+            lastname: $lastNameFld.val(),
+            role: $roleFld.val()
+        }
     createUser(usersArr1)
 
+
+    username: $userNameFld.val("")
+    password: $passwordFld.val("")
+    firstname: $firstNameFld.val("")
+    lastname: $lastNameFld.val("")
+    role: $roleFld.val("")
 })
+
 
 function createUser(user) {
     console.log(user)
@@ -43,17 +54,13 @@ function renderUsers(usersAr) {
           
         </tr>`)
     }
-    jQuery(".wbdv-delete").click(function(event){
+    jQuery(".wbdv-delete").click(function (event) {
         console.log(event.target)
-        var deleteBtn =jQuery(event.target)
+        var deleteBtn = jQuery(event.target)
         var theId = deleteBtn.attr("id")
-        usersArr.splice(theId,1)
+        usersArr.splice(theId, 1)
         renderUsers(usersArr)
     })
 }
 
-var userNameFld = $("#usernameFld")
-var passwordFld = $("#passwordFld")
-var firstNameFld = $("#firstNameFld")
-var lastNameFld = $("#lastNameFld")
-var roleFld = $("#roleFld")
+
