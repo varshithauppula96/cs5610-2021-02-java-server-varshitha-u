@@ -1,33 +1,14 @@
-var tablebody = jQuery("tbody")
-var usersArr = [
+var usersArr = [];
+var $userNameFld
+var $passwordFld
+var $firstNameFld
+var $lastNameFld
+var $roleFld
+var $addUserBtn
+var tablebody
 
-];
-var $userNameFld = $("#usernameFld")
-var $passwordFld = $("#passwordFld")
-var $firstNameFld = $("#firstNameFld")
-var $lastNameFld = $("#lastNameFld")
-var $roleFld = $("#roleFld")
-var $addUserBtn = jQuery(".wbdv-create")
-console.log($addUserBtn)
+var userServices = new AdminUserServiceClient()
 
-$addUserBtn.click(function () {
-    var usersArr1 =
-        {
-            username: $userNameFld.val(),
-            password: $passwordFld.val(),
-            firstname: $firstNameFld.val(),
-            lastname: $lastNameFld.val(),
-            role: $roleFld.val()
-        }
-    createUser(usersArr1)
-
-
-    username: $userNameFld.val("")
-    password: $passwordFld.val("")
-    firstname: $firstNameFld.val("")
-    lastname: $lastNameFld.val("")
-    role: $roleFld.val("")
-})
 
 
 function createUser(user) {
@@ -42,7 +23,7 @@ function renderUsers(usersAr) {
     for (var i = 0; i < usersAr.length; i++) {
         var user = usersAr[i]
         tablebody
-            .append(`
+            .prepend(`
     <tr>
             <td>${user.username}</td>
             <td>${""}</td>
@@ -54,13 +35,54 @@ function renderUsers(usersAr) {
           
         </tr>`)
     }
+
+
     jQuery(".wbdv-delete").click(function (event) {
         console.log(event.target)
         var deleteBtn = jQuery(event.target)
-        var theId = deleteBtn.attr("id")
-        usersArr.splice(theId, 1)
-        renderUsers(usersArr)
+        var theIndex = deleteBtn.attr("id")
+
+        var theID = usersArr[theIndex]._id
+
+        userServices.deleteUser(theID).then(function (status) {
+            usersArr.splice(theIndex, 1)
+            renderUsers(usersArr)
+        })
     })
+
 }
 
 
+function main(){
+     $userNameFld = $("#usernameFld")
+     $passwordFld = $("#passwordFld")
+     $firstNameFld = $("#firstNameFld")
+     $lastNameFld = $("#lastNameFld")
+     $roleFld = $("#roleFld")
+     $addUserBtn = jQuery(".wbdv-create")
+    tablebody = jQuery("tbody")
+
+    $addUserBtn.click(function () {
+        var usersArr1 =
+            {
+                username: $userNameFld.val(),
+                password: $passwordFld.val(),
+                firstname: $firstNameFld.val(),
+                lastname: $lastNameFld.val(),
+                role: $roleFld.val()
+            }
+        createUser(usersArr1)
+
+
+        username: $userNameFld.val("")
+        password: $passwordFld.val("")
+        firstname: $firstNameFld.val("")
+        lastname: $lastNameFld.val("")
+        role: $roleFld.val("")
+    })
+    userServices.findAllUsers().then(function(actualUsersFromServer){
+usersArr = actualUsersFromServer
+        renderUsers(usersArr)
+    })
+}
+jQuery(main)
