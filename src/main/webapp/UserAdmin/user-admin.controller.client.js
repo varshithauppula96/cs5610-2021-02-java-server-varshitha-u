@@ -83,12 +83,20 @@ function updateUser(){
     selectedUser.firstname=$firstNameFld.val()
     selectedUser.lastname=$lastNameFld.val()
     selectedUser.role=$roleFld.val()
+
+
     userServices.updateUser(selectedUser._id , selectedUser)
         .then(function(status) {
             var index = usersArr.findIndex(user => user._id === selectedUser._id)
 usersArr[index]=selectedUser
             renderUsers(usersArr)
         })
+     $userNameFld.val("")
+    $passwordFld.val("")
+     $firstNameFld.val("")
+    $lastNameFld.val("")
+    $roleFld.val("")
+
 }
 
 function main(){
