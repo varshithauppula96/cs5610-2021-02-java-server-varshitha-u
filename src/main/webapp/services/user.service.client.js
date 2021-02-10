@@ -8,13 +8,16 @@ function AdminUserServiceClient() {
     var self = this;
 
     function createUser(user) {
-        return fetch('https://wbdv-generic-server.herokuapp.com/api/001025839/users', {
+        return fetch(self.url, {
             method: 'POST',
-            body: JSON.stringify(user),
+
             headers: {
                 'content-type': 'application/json'
-            }
-        }).then(response => response.json())
+            },
+            body: JSON.stringify(user)
+        }).then(function (response) {
+            return response.json()
+        })
     }
 
     function findAllUsers() {
@@ -27,19 +30,21 @@ function AdminUserServiceClient() {
     }
 
     function updateUser(userId, user) {
-        return fetch(`https://wbdv-generic-server.herokuapp.com/api/001025839/courses${userId}`, {
+        return fetch(`${self.url}/${userId}`, {
             method: 'PUT',
-            body: JSON.stringify(user),
+
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(user)
+
         }).then(response => response.json())
     }
 
     function deleteUser(userId) {
-        return fetch('https://wbdv-generic-server.herokuapp.com/api/001025839/users' + userId, {
-            method: 'DELETE'
-
-        })
-    }
+        return fetch(`${self.url}/${userId}`,{
+            method: 'DELETE'}
+        )
+    
+}
 }

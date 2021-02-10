@@ -33,6 +33,7 @@ function selectUser(event) {
     $firstNameFld.val(selectedUser.firstname)
     $lastNameFld.val(selectedUser.lastname)
     $roleFld.val(selectedUser.role)
+
 }
 
 function deleteCourse (event) {
@@ -76,12 +77,18 @@ jQuery(".wbdv-delete").click(deleteCourse)
 }
 
 function updateUser(){
-    console.log(selectedUser)
+
     selectedUser.username=$userNameFld.val()
     selectedUser.password=$passwordFld.val()
     selectedUser.firstname=$firstNameFld.val()
     selectedUser.lastname=$lastNameFld.val()
     selectedUser.role=$roleFld.val()
+    userServices.updateUser(selectedUser._id , selectedUser)
+        .then(function(status) {
+            var index = usersArr.findIndex(user => user._id === selectedUser._id)
+usersArr[index]=selectedUser
+            renderUsers(usersArr)
+        })
 }
 
 function main(){
