@@ -57,7 +57,7 @@ function renderUsers(usersAr) {
             .prepend(`
     <tr>
             <td>${user.username}</td>
-            <td>${""}</td>
+            <td>${"******"}</td>
             <td>${user.firstname}</td>
             <td>${user.lastname}</td>
             <td>${user.role}</td>
