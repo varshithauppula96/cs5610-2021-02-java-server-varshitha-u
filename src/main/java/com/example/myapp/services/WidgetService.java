@@ -51,10 +51,30 @@ return repository.findAllWidgets();
 //        return null;
     }
     public int updateWidget(Long id, Widget newWidget) {
-        Widget originalWidget =findWidgetById(id);
-        originalWidget.setText(newWidget.getText());
-         repository.save(originalWidget);
-         return 1;
+        Widget originalWidget = repository.findById(id).get();
+        if (newWidget.getText() != null) {
+            originalWidget.setText(newWidget.getText());
+        }
+        if (newWidget.getType() != null) {
+            originalWidget.setType(newWidget.getType());
+        }
+        if (newWidget.getSize() != null) {
+            originalWidget.setSize(newWidget.getSize());
+        }
+        if (newWidget.getText() != null) {
+            originalWidget.setText(newWidget.getText());
+        }
+        if (newWidget.getWidth() != null) {
+            originalWidget.setWidth(newWidget.getWidth());
+        }
+        if (newWidget.getHeight() != null) {
+            originalWidget.setHeight(newWidget.getHeight());
+        }
+        if (newWidget.getSrc() != null) {
+            originalWidget.setSrc(newWidget.getSrc());
+        }
+        repository.save(originalWidget);
+        return -1;
 //        for(int i=0; i<widgets.size(); i++) {
 //            Widget w = widgets.get(i);
 //            if(w.getId().equals(id)) {
